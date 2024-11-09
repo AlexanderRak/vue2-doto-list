@@ -1,16 +1,19 @@
 <template>
    <button
       class="todo__checkbox-button"
+      @click="completedSelectedTask"
    >
    </button>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Task } from '../../types';
 
 @Component
 export default class CheckBoxButton extends Vue {
    // props
+   @Prop({ required: true }) readonly task!: Task
 
    // fields
 
@@ -23,6 +26,9 @@ export default class CheckBoxButton extends Vue {
    // computed
 
    // methods
+   completedSelectedTask() {
+      this.$emit('completed-selected-task', this.task.id, true);
+   }
 
    // handlers
 }

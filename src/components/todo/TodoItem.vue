@@ -2,15 +2,23 @@
    <div class="todo__list-item">
       <div class="todo__list-grid">
          <div class="todo__list-grid-item">
-            <div class="todo__list-item-text">
+            <div
+               class="todo__list-item-text"
+               :class="{ completed: task.completed }"
+            >
                {{ task.title }}
             </div>
          </div>
          <div class="todo__list-grid-item">
-            <CheckBoxButton/>
+            <CheckBoxButton
+               v-if="!task.completed"
+               :task="task"
+               @completed-selected-task="completedSelectedTask"
+            />
          </div>
          <div class="todo__list-grid-item">
             <DeleteButton
+               v-if="!task.completed"
                :task="task"
                @delete-selected-task="deleteSelectedTask"
             />
@@ -50,6 +58,10 @@ export default class TodoItem extends Vue {
       this.$emit('delete-selected-task', this.task.id);
    }
 
+   completedSelectedTask() {
+      this.$emit('completed-selected-task', this.task.id, true);
+   }
+
    // handlers
 }
 </script>
@@ -67,4 +79,7 @@ export default class TodoItem extends Vue {
       &__list-item-text
          color: #9E78CF
          font-size: 18px
+         &.completed
+            color: #78CFB0
+            text-decoration: line-through
 </style>

@@ -10,7 +10,6 @@
 </template>
 
 <script lang="ts">
-// eslint-disable-next-line object-curly-newline
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component

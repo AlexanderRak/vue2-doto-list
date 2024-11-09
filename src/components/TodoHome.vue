@@ -4,8 +4,14 @@
          @add-task="addNewTask"
       />
       <TodoList
+         v-if="tasks.length"
          :tasks="tasks"
          @delete-selected-task="handleDeleteTask"
+         @completed-selected-task="completedSelectTask"
+      />
+      <TodoCompliteList
+         v-if="completedTasks.length"
+         :completed-tasks="completedTasks"
       />
    </div>
 </template>
@@ -14,34 +20,23 @@
 import { Component, Vue } from 'vue-property-decorator';
 import TodoForm from './todo/TodoForm.vue';
 import TodoList from './todo/TodoList.vue';
+import TodoCompliteList from './todo/TodoCompliteList.vue';
+import { Task } from './types';
 
 @Component({
    components: {
       TodoForm,
       TodoList,
+      TodoCompliteList,
    },
 })
 export default class TodoHome extends Vue {
    // props
 
    // fields
-   tasks = [
-      {
-         id: 1,
-         title: 'Таска 1',
-         completed: false,
-      },
-      {
-         id: 2,
-         title: 'Таска 2',
-         completed: false,
-      },
-      {
-         id: 3,
-         title: 'Таска 3',
-         completed: false,
-      },
-   ]
+   tasks: Task[] = [];
+
+   completedTasks: Task[] = [];
 
    // watchers
 
@@ -63,6 +58,17 @@ export default class TodoHome extends Vue {
 
    handleDeleteTask(taskId: number) {
       this.tasks = this.tasks.filter((task) => task.id !== taskId);
+   }
+
+   completedSelectTask(taskId: number, taskCompleted: boolean) {
+      this.tasks = this.tasks.filter((task) => {
+         if (task.id === taskId) {
+            const completedTask = { ...task, completed: taskCompleted };
+            this.completedTasks.push(completedTask);
+            return false;
+         }
+         return true;
+      });
    }
 
    // handlers
