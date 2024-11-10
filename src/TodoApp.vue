@@ -13,7 +13,23 @@ import TodoHome from './components/TodoHome.vue';
       TodoHome,
    },
 })
-export default class TodoApp extends Vue { }
+export default class TodoApp extends Vue {
+   // props
+
+   // fields
+
+   // watchers
+
+   // emits
+
+   // hooks
+
+   // computed
+
+   // methods
+
+   // handlers
+}
 </script>
 
 <style lang="sass">

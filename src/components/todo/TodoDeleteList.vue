@@ -1,11 +1,11 @@
 <template>
    <div class="todo__list">
       <div class="todo__list-title">
-         All tasks completed - {{ completedTasks.length }}
+         All tasks delete - {{ deleteTasks.length }}
       </div>
       <div class="todo__list-flex">
          <TodoItem
-            v-for="task in completedTasks"
+            v-for="task in deleteTasks"
             :key="task.id"
             :task="task"
          />
@@ -23,9 +23,9 @@ import TodoItem from './TodoItem.vue';
       TodoItem,
    },
 })
-export default class TodoCompliteList extends Vue {
+export default class TodoDeleteList extends Vue {
    // props
-   @Prop({ required: true }) readonly completedTasks!: Task[]
+   @Prop({ required: true }) readonly deleteTasks!: Task[]
 
    // fields
 

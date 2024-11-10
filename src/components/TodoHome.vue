@@ -6,12 +6,16 @@
       <TodoList
          v-if="tasks.length"
          :tasks="tasks"
-         @delete-selected-task="handleDeleteTask"
+         @delete-selected-task="removedSelectTask"
          @completed-selected-task="completedSelectTask"
       />
       <TodoCompliteList
          v-if="completedTasks.length"
          :completed-tasks="completedTasks"
+      />
+      <TodoDeleteList
+         v-if="removedTasks.length"
+         :delete-tasks="removedTasks"
       />
    </div>
 </template>
@@ -21,6 +25,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import TodoForm from './todo/TodoForm.vue';
 import TodoList from './todo/TodoList.vue';
 import TodoCompliteList from './todo/TodoCompliteList.vue';
+import TodoDeleteList from './todo/TodoDeleteList.vue';
 import { Task } from './types';
 
 @Component({
@@ -28,6 +33,7 @@ import { Task } from './types';
       TodoForm,
       TodoList,
       TodoCompliteList,
+      TodoDeleteList,
    },
 })
 export default class TodoHome extends Vue {
@@ -37,6 +43,8 @@ export default class TodoHome extends Vue {
    tasks: Task[] = [];
 
    completedTasks: Task[] = [];
+
+   removedTasks: Task[] = [];
 
    // watchers
 
@@ -52,18 +60,35 @@ export default class TodoHome extends Vue {
          id: Date.now(),
          title,
          completed: false,
+         removed: false,
+         uiComponent: true,
       };
       this.tasks.push(newTask);
    }
 
-   handleDeleteTask(taskId: number) {
-      this.tasks = this.tasks.filter((task) => task.id !== taskId);
-   }
-
-   completedSelectTask(taskId: number, taskCompleted: boolean) {
+   removedSelectTask(taskId: number, taskRemoved: boolean, uiComponentTask: boolean) {
       this.tasks = this.tasks.filter((task) => {
          if (task.id === taskId) {
-            const completedTask = { ...task, completed: taskCompleted };
+            const removedTasks = {
+               ...task,
+               removed: taskRemoved,
+               uiComponent: uiComponentTask,
+            };
+            this.removedTasks.push(removedTasks);
+            return false;
+         }
+         return true;
+      });
+   }
+
+   completedSelectTask(taskId: number, taskCompleted: boolean, uiComponentTask: boolean) {
+      this.tasks = this.tasks.filter((task) => {
+         if (task.id === taskId) {
+            const completedTask = {
+               ...task,
+               completed: taskCompleted,
+               uiComponent: uiComponentTask,
+            };
             this.completedTasks.push(completedTask);
             return false;
          }

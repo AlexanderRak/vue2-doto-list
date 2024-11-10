@@ -1,7 +1,7 @@
 <template>
    <div class="todo__list">
       <div class="todo__list-title">
-         Tasks to do - {{ tasks.length }}
+         All tasks - {{ tasks.length }}
       </div>
       <div class="todo__list-flex">
          <TodoItem
@@ -40,12 +40,12 @@ export default class TodoList extends Vue {
    // computed
 
    // methods
-   deleteSelectedTask(taskId: number) {
-      this.$emit('delete-selected-task', taskId);
+   deleteSelectedTask(taskId: number, taskRemoved: boolean, uiComponentTask: boolean) {
+      this.$emit('delete-selected-task', taskId, taskRemoved, uiComponentTask);
    }
 
-   completedSelectedTask(taskId: number, taskCompleted: boolean) {
-      this.$emit('completed-selected-task', taskId, taskCompleted);
+   completedSelectedTask(taskId: number, taskCompleted: boolean, uiComponentTask: boolean) {
+      this.$emit('completed-selected-task', taskId, taskCompleted, uiComponentTask);
    }
 
    // handlers
