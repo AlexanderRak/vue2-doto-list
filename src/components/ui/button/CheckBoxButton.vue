@@ -44,6 +44,7 @@ export default class CheckBoxButton extends Vue {
          width: 22px
          height: 22px
          padding: 0
+         transition: .3s
          &::before
             content: ""
             background-image: url('~@/assets/icon-check.svg')
@@ -54,4 +55,8 @@ export default class CheckBoxButton extends Vue {
             top: 50%
             left: 50%
             transform: translate(-50%, -50%)
+         &:hover
+            &::before
+            -webkit-filter: drop-shadow(2px 4px 5px #9E78CF)
+            filter: drop-shadow(2px 4px 5px #9E78CF)
 </style>

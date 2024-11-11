@@ -1,7 +1,7 @@
 <template>
    <div class="todo__list">
       <div class="todo__list-title">
-         All tasks delete - {{ deleteTasks.length }}
+         Remote tasks - {{ deleteTasks.length }}
       </div>
       <div class="todo__list-flex">
          <TodoItem

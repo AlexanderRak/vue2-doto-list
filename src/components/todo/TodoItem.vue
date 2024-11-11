@@ -79,10 +79,6 @@ export default class TodoItem extends Vue {
          background: #15101C
          border-radius: 10px
          padding: 22px
-         &.completed
-            box-shadow: inset 0 0 0px 1px #78CFB0
-         &.removed
-            box-shadow: inset 0 0 0px 1px red
       &__list-grid
          display: grid
          grid-template-columns: 1fr 22px 22px
@@ -95,4 +91,5 @@ export default class TodoItem extends Vue {
             text-decoration: line-through
          &.removed
             color: red
+            text-decoration: line-through
 </style>

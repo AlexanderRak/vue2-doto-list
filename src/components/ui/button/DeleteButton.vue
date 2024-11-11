@@ -52,4 +52,8 @@ export default class DeleteButton extends Vue {
             top: 50%
             left: 50%
             transform: translate(-50%, -50%)
+         &:hover
+            &::before
+            -webkit-filter: drop-shadow(2px 4px 5px #9E78CF)
+            filter: drop-shadow(2px 4px 5px #9E78CF)
 </style>

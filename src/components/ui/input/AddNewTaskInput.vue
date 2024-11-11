@@ -49,4 +49,8 @@ export default class AddNewTaskInput extends Vue {
          border-radius: 10px
          background: transparent
          padding: 0 0 0 1rem
+         &:focus
+            border: 1px solid #3E1671
+            box-shadow: 0 0 3px 0 #3E1671
+            outline: 0
 </style>

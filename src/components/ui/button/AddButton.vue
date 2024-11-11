@@ -37,6 +37,7 @@ export default class AddButton extends Vue {
          border: 0
          position: relative
          cursor: pointer
+         transition: .3s
          &::before
             content: ""
             background-image: url('~@/assets/icon-plus.svg')
@@ -47,4 +48,6 @@ export default class AddButton extends Vue {
             top: 50%
             left: 50%
             transform: translate(-50%, -50%)
+         &:hover
+            box-shadow: 0 0 3px 0 #9E78CF
 </style>

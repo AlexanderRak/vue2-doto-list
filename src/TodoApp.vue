@@ -35,15 +35,13 @@ export default class TodoApp extends Vue {
 <style lang="sass">
 body
    margin: 0
-   width: 100%
-   height: 100vh
+   background: #0D0714
 *
    box-sizing: border-box
 #TodoApp
    font-family: Avenir, Helvetica, Arial, sans-serif
    -webkit-font-smoothing: antialiased
    -moz-osx-font-smoothing: grayscale
-   background: #0D0714
    height: 100%
    width: 100%
 </style>
