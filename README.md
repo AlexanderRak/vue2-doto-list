@@ -47,6 +47,7 @@ src/
 │       ├── CheckBoxButton.vue   # Checkbox to mark tasks as completed
 └── store/
     └── index.js                 # Vuex store for managing global state
+```
 
 ## Project setup
 ```
@@ -62,4 +63,3 @@ npm run serve
 ```
 npm run build
 ```
-
